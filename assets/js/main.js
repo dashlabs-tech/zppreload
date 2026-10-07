@@ -28,22 +28,24 @@ document.getElementById('ftr').innerHTML=`<footer><div class="wrap"><div class="
 /* ===== Halaman harga ===== */
 const tb=document.getElementById('tbody');
 if(tb){
- let data=[],kat='Semua';
+ let data=[],kat='Semua',lim=100;
  const rp=n=>'Rp '+Number(n).toLocaleString('id-ID');
  const render=()=>{
   const q=document.getElementById('q').value.toLowerCase();
   const rows=data.filter(d=>(kat==='Semua'||d.kategori===kat)&&(d.kode+' '+d.nama).toLowerCase().includes(q));
-  tb.innerHTML=rows.length?rows.map(d=>`<tr><td>${d.kode}</td><td>${d.nama}</td><td>${rp(d.harga)}</td><td class="${d.status==='Normal'?'ok':'no'}">${d.status==='Normal'?'● Normal':'● Gangguan'}</td></tr>`).join(''):'<tr><td colspan="4">Produk tidak ditemukan.</td></tr>';
+  const more=document.getElementById('more');more.hidden=rows.length<=lim;more.textContent='Tampilkan lebih banyak ('+(rows.length-lim)+' lagi)';
+  tb.innerHTML=rows.length?rows.slice(0,lim).map(d=>`<tr><td>${d.kode}</td><td>${d.nama}</td><td>${rp(d.harga)}</td><td class="${d.status==='Normal'?'ok':'no'}">${d.status==='Normal'?'● Normal':'● Gangguan'}</td></tr>`).join(''):'<tr><td colspan="4">Produk tidak ditemukan.</td></tr>';
  };
  fetch('data/harga.json').then(r=>r.json()).then(j=>{
   data=j.produk;document.getElementById('upd').textContent='Terakhir diperbarui: '+j.update;
   const ks=['Semua',...new Set(data.map(d=>d.kategori))];
   const t=document.getElementById('tabs');
   t.innerHTML=ks.map(k=>`<button class="tab ${k===kat?'on':''}">${k}</button>`).join('');
-  t.onclick=e=>{if(e.target.classList.contains('tab')){kat=e.target.textContent;[...t.children].forEach(b=>b.classList.toggle('on',b===e.target));render()}};
+  t.onclick=e=>{if(e.target.classList.contains('tab')){kat=e.target.textContent;lim=100;[...t.children].forEach(b=>b.classList.toggle('on',b===e.target));render()}};
   render();
  }).catch(()=>tb.innerHTML='<tr><td colspan="4">Gagal memuat harga. Jalankan lewat server (GitHub Pages / live server).</td></tr>');
- document.getElementById('q').oninput=render;
+ document.getElementById('q').oninput=()=>{lim=100;render()};
+ document.getElementById('more').onclick=()=>{lim+=200;render()};
  document.getElementById('dl').onclick=()=>{
   const csv='Kode,Produk,Harga,Status\n'+data.map(d=>`${d.kode},"${d.nama}",${d.harga},${d.status}`).join('\n');
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='harga-zpp-reload.csv';a.click();
