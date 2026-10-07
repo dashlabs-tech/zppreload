@@ -1,0 +1,34 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<script>try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.dataset.theme=t}catch(e){}</script>
+<title>Admin - Konversi Harga</title><meta name="description" content="Alat internal konversi harga."><meta name="robots" content="noindex,nofollow">
+<link rel="canonical" href="https://zppreload.com/admin.html">
+<meta property="og:type" content="website"><meta property="og:site_name" content="ZPP Reload"><meta property="og:locale" content="id_ID"><meta property="og:title" content="Admin - Konversi Harga"><meta property="og:description" content="Alat internal konversi harga."><meta property="og:url" content="https://zppreload.com/admin.html"><meta property="og:image" content="https://zppreload.com/assets/images/logo.png">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="Admin - Konversi Harga"><meta name="twitter:description" content="Alat internal konversi harga."><meta name="twitter:image" content="https://zppreload.com/assets/images/logo.png">
+<meta name="theme-color" content="#1f5eff"><link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/images/icon-192.png"><link rel="apple-touch-icon" href="assets/images/icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css"></head><body>
+<div id="hdr"></div>
+<div class="page-h"><div class="wrap"><h1>Admin: <em>Konversi Harga</em></h1><p>File diproses di browser Anda, tidak diunggah ke mana pun.</p></div></div>
+<section style="padding-top:20px"><div class="wrap adm">
+<div class="box"><h3>1. Konversi TSV produk &rarr; harga.json</h3><p class="muted">Pilih file TSV (kolom: Aktif, Kode, Nama, Provider, Hrg Beli, Hrg Jual, Gangguan). Hanya Hrg Jual yang dipakai.</p>
+<div class="drop" id="drop">Klik atau tarik file .tsv ke sini<input type="file" id="f" accept=".tsv,.txt,.csv" hidden></div>
+<pre id="out" hidden></pre><button class="btn btn-p" id="dlj" hidden style="margin-top:12px">⬇ Download harga.json</button>
+<p class="muted" style="margin-top:12px">Lalu upload ke GitHub: folder <b>data/</b> &rarr; ganti <b>harga.json</b>.</p></div>
+<div class="box"><h3>2. Banner pengumuman</h3>
+<form class="form" id="af" style="box-shadow:none;border:0;padding:0;margin:12px 0 0;max-width:none"><label><span><input type="checkbox" id="aa"> Aktifkan banner</span></label>
+<label>Teks<input id="at" placeholder="Gangguan Telkomsel, estimasi pulih 14.00"></label>
+<label>Tipe<select id="ay"><option value="info">Info (biru)</option><option value="warn">Peringatan (kuning)</option><option value="bad">Gangguan (merah)</option></select></label>
+<label>Link (opsional)<input id="al" placeholder="https://t.me/zavier_h2hinfo"></label>
+<button class="btn btn-p" type="submit">⬇ Download pengumuman.json</button></form>
+<p class="muted" style="margin-top:12px">Upload ke folder <b>data/</b>. Nonaktifkan dengan centang dimatikan.</p></div></div></section>
+<div id="ftr"></div><script src="assets/js/convert.js"></script><script>
+const dl=(t,n)=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'application/json'}));a.download=n;a.click()};
+let res=null;const drop=document.getElementById('drop'),f=document.getElementById('f'),out=document.getElementById('out');
+drop.onclick=()=>f.click();drop.ondragover=e=>{e.preventDefault();drop.classList.add('on')};drop.ondragleave=()=>drop.classList.remove('on');
+drop.ondrop=e=>{e.preventDefault();drop.classList.remove('on');load(e.dataTransfer.files[0])};f.onchange=()=>load(f.files[0]);
+function load(file){if(!file)return;const r=new FileReader();r.onload=()=>{try{res=ZPPConvert.convert(r.result);const s=res.stats;
+out.hidden=false;out.textContent='Baris: '+s.baris+'\nMasuk: '+s.total+'\nDilewati: '+JSON.stringify(s.skip)+'\nPer kategori: '+JSON.stringify(s.per,null,1)+'\nTanggal update: '+res.json.update;document.getElementById('dlj').hidden=false}catch(e){out.hidden=false;out.textContent='Error: '+e.message}};r.readAsText(file)}
+document.getElementById('dlj').onclick=()=>dl(JSON.stringify(res.json),'harga.json');
+document.getElementById('af').onsubmit=e=>{e.preventDefault();dl(JSON.stringify({aktif:aa.checked,tipe:ay.value,teks:at.value,link:al.value},null,1),'pengumuman.json')};
+</script><script src="assets/js/main.js"></script></body></html>

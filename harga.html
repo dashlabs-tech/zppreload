@@ -1,14 +1,20 @@
 <!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Harga - ZPP Reload</title><meta name="description" content="Daftar harga pulsa, paket data, PPOB dan voucher game ZPP Reload.">
-<link rel="icon" href="assets/images/logo.png">
+<script>try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.dataset.theme=t}catch(e){}</script>
+<title>Daftar Harga Pulsa, Paket Data & PPOB - ZPP Reload</title><meta name="description" content="Daftar harga pulsa, paket data, token PLN, e-wallet dan voucher game ZPP Reload. Cari produk, filter operator, salin kode, dan unduh CSV."><meta name="robots" content="index,follow">
+<link rel="canonical" href="https://zppreload.com/harga.html">
+<meta property="og:type" content="website"><meta property="og:site_name" content="ZPP Reload"><meta property="og:locale" content="id_ID"><meta property="og:title" content="Daftar Harga Pulsa, Paket Data & PPOB - ZPP Reload"><meta property="og:description" content="Daftar harga pulsa, paket data, token PLN, e-wallet dan voucher game ZPP Reload. Cari produk, filter operator, salin kode, dan unduh CSV."><meta property="og:url" content="https://zppreload.com/harga.html"><meta property="og:image" content="https://zppreload.com/assets/images/logo.png">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="Daftar Harga Pulsa, Paket Data & PPOB - ZPP Reload"><meta name="twitter:description" content="Daftar harga pulsa, paket data, token PLN, e-wallet dan voucher game ZPP Reload. Cari produk, filter operator, salin kode, dan unduh CSV."><meta name="twitter:image" content="https://zppreload.com/assets/images/logo.png">
+<meta name="theme-color" content="#1f5eff"><link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/images/icon-192.png"><link rel="apple-touch-icon" href="assets/images/icon-192.png">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css"></head><body>
 <div id="hdr"></div>
-<div class="page-h"><div class="wrap"><h1>Harga <em>Terbaik</em> Untuk Anda</h1><p>Harga terbaik dan produk paling lengkap untuk kebutuhan Anda.</p></div></div>
+<div class="page-h"><div class="wrap"><h1>Harga <em>Terbaik</em> Untuk Anda</h1><p>Harga terbaik dan produk lengkap. Klik kode produk untuk menyalinnya.</p></div></div>
 <section style="padding-top:10px"><div class="wrap">
-<div class="tools"><input id="q" placeholder="Cari kode atau nama produk..."><button class="btn btn-p" id="dl">⬇ Download Semua Harga</button></div>
-<div class="tabs" id="tabs"></div>
-<div class="tbl"><table><thead><tr><th>Kode</th><th>Produk</th><th>Harga</th><th>Status</th></tr></thead><tbody id="tbody"><tr><td colspan="4">Memuat...</td></tr></tbody></table></div>
+<div class="tools"><input id="q" placeholder="Cari kode atau nama produk..."><button class="btn btn-p" id="dl">⬇ Semua Harga (CSV)</button><button class="btn btn-o" id="dlk" hidden></button></div>
+<div class="statbar" id="sb"></div>
+<div class="tabs" id="tabs"></div><div class="tabs sub" id="jtabs" hidden></div>
+<div class="tbl"><table><thead><tr><th>Kode</th><th>Produk</th><th>Harga</th><th>Status</th><th></th></tr></thead><tbody id="tbody"><tr><td colspan="5">Memuat...</td></tr></tbody></table></div>
 <div style="text-align:center;margin-top:16px"><button class="btn btn-o" id="more" hidden></button></div>
 <p class="upd" id="upd"></p></div></section>
 <section style="padding-top:0"><div class="wrap"><div class="title"><h2>Kontak &amp; Support</h2></div><div data-contacts></div></div></section>
