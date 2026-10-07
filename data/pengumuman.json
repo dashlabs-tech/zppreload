@@ -1,1 +1,6 @@
-{"aktif":false,"tipe":"info","teks":"","link":""}
+{
+ "aktif": true,
+ "tipe": "info",
+ "teks": "Open Deposit",
+ "link": ""
+}
