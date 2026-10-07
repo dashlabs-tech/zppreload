@@ -1,0 +1,11 @@
+{
+ "update": "07 Oktober 2026",
+ "produk": [
+  {"kategori":"Pulsa","kode":"S5","nama":"Telkomsel 5.000 (CONTOH)","harga":5600,"status":"Normal"},
+  {"kategori":"Pulsa","kode":"S10","nama":"Telkomsel 10.000 (CONTOH)","harga":10500,"status":"Normal"},
+  {"kategori":"Pulsa","kode":"X10","nama":"XL 10.000 (CONTOH)","harga":10600,"status":"Normal"},
+  {"kategori":"Paket Data","kode":"TD3","nama":"Telkomsel Data 3GB (CONTOH)","harga":15000,"status":"Normal"},
+  {"kategori":"Token PLN","kode":"PLN20","nama":"Token PLN 20.000 (CONTOH)","harga":20500,"status":"Normal"},
+  {"kategori":"Voucher Game","kode":"ML86","nama":"Mobile Legends 86 Diamond (CONTOH)","harga":20000,"status":"Normal"}
+ ]
+}
